@@ -13,20 +13,27 @@
 #include "ParseCmLine.h"
 #include "Simulation.h"
 
+typedef struct {
+    int h;
+    int w;
+    int robots;
+    int mode;
+} Data_t; //estructura para guardar lo ingresado por el usuario
+
 int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {0,0,0,0};
+    Data_t userData = {4,6,1,1};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
+    printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
-    Simulation* Simulation1 = CreateSimulation(5, 5, 1); 
+    Simulation* Simulation1 = CreateSimulation(5,5,1)/*(userData.w, userData.h , userData.robots)*/; 
     Simulator(Simulation1);
-    DeleteSimulation(Simulation1);
-
-    return (EXIT_SUCCESS);
+    DeleteSimulation(Simulation1); 
+    return (EXIT_SUCCESS);  
 }
 
 int parseCallback(char *key, char *value, void *userData)
