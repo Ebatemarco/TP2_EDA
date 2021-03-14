@@ -109,7 +109,7 @@ void PrintFloor(Floor* F, Robot* R)//Por ahora con solo un robot
         printf("\n");
         for(long j=0; j< (F->Width); j++)
         {
-            if( (i == (R->y)) && (j == (R->x)) )
+            if( (i == floor((R->y))) && (j == floor((R->x))) )
             {
                 printf(ANSI_COLOR_RED  "* "  ANSI_COLOR_RESET);
             }
