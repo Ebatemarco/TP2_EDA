@@ -26,14 +26,6 @@ extern "C" {
 #define OK 1
 
 typedef int (*pCallback) (char *, char*, void *);
-    
-typedef struct {
-    int h;
-    int w;
-    int robots;
-    int mode;
-} Data_t; //estructura para guardar lo ingresado por el usuario
-
 
 int parseCmdline(int argc, char *argv [], pCallback p, void *userData); 
 /* Ej: -Mode 2 arranca en el modo 2
