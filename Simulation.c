@@ -134,7 +134,7 @@ void PrintFloor(Floor* F, Robot* R)//Por ahora con solo un robot
 
 bool AllClear(Floor* F) //Si el piso esta limpio da 1 
 {
-    for(long i= 0; i< (F->Height) ; i++ )
+    for(long i= 0; i < ((F->Height)*(F->Width)) ; i+=(F->Width) )
     {
         for(long j=0; j<(F->Width); j++)
         {  
@@ -176,13 +176,15 @@ void ClearPoint(Floor* F, Robot* R)
 
 void Simulator(Simulation* Simu)
 {
-    while( !(AllClear(Simu->f) ))//Mientras el piso este sucio segumos simulando
+    
+    while( !(AllClear(Simu->f) ))
     {
-        PrintFloor(Simu->f, Simu->robs);//Dibuajmos el piso 
         SimulationUpdate(Simu->robs, Simu->f);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs);
+        PrintFloor(Simu->f, Simu->robs);//Dibuajmos el piso
         sleep(TIME);
-    }
+        
+    }//Mientras el piso este sucio segumos simulando
     printf("Todo Limpio (%d)\n", AllClear(Simu->f));
     return;
 }
