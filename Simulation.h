@@ -23,12 +23,13 @@ extern "C" {
 #include <stdbool.h>
 #include <time.h>
 #include <unistd.h>
+#include <math.h>
     
 #define H 100
 #define W 70
 #define SUCIO 0
 #define LIMPIO 1
-#define TIME 0.5    
+#define TIME 1    
     
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"

@@ -131,6 +131,7 @@ void PrintFloor(Floor* F, Robot* R)//Por ahora con solo un robot
     printf("\n");
     
 }
+
 bool AllClear(Floor* F) //Si el piso esta limpio da 1 
 {
     for(long i= 0; i< (F->Height) ; i++ )
@@ -152,72 +153,15 @@ void SimulationUpdate(Robot* R, Floor* F)
     do
     {
         
-        if(Flag>0)//Vemos en que caso estamos
+        if(Flag>0)
         {
-            R->Orientation = (rand() % 360);//Randomizamos la orientacion
-            switch(Flag){//En base al flag restauramos el posicion previa del robot
-                case 1: R->x -=1 ;break;
-                case 2: R->y -=1 ;break;
-                case 3: R->x +=1 ;break;
-                case 4: R->y +=1 ;break;
-                case 5: R->y -=1 ;
-                        R->x -=1 ;break;
-                case 6: R->y -=1 ;
-                        R->x +=1 ;break;
-                case 7: R->y +=1 ; 
-                        R->x +=1 ;break;
-                case 8: R->y +=1 ;
-                        R->x -=1 ;break;
-                default: break; 
-                
-            }
-            
+            (R->x)-=cos(R->Orientation);
+            (R->y)-=sin(R->Orientation);
+            (R->Orientation) = (rand() % 360);//Randomizamos la orientacion
         }
-        if( (R->Orientation) >= 337 || (R->Orientation) < 22 )//Elrobot se mueve en 4 direcciones nada mas
-        {
-            R->x += 1 ;
-            Flag = 1; 
-        }
-        else if( (R->Orientation) <67 && (R->Orientation) >= 22)
-        {
-            R->y+=1;
-            R->x+=1;
-            Flag=5;
-            
-        }
-        else if( (R->Orientation) >= 67 && (R->Orientation) < 112 )
-        {
-            R->y += 1 ;
-            Flag =2;
-        }
-        else if((R->Orientation) >= 112 && (R->Orientation) < 157)
-        {
-            R->y+=1;
-            R->x-=1;
-            Flag=6;
-        }
-        else if((R->Orientation) < 202 && (R->Orientation) >= 157 )
-        {
-            R->x -= 1 ;
-            Flag =3;
-        }
-        else if((R->Orientation) >= 202 && (R->Orientation) < 247)
-        {
-            R->y-=1;
-            R->x-=1;
-            Flag=7;
-        }
-        else if( (R->Orientation) >= 247 && (R->Orientation) < 292 )
-        {
-            R->y -= 1 ;
-            Flag =4;
-        }
-        else if( (R->Orientation) >= 292 && (R->Orientation) < 337 )
-        {
-            R->y-=1;
-            R->x+=1;
-            Flag=8;
-        }
+        (R->x)+=cos(R->Orientation);
+        (R->y)+=sin(R->Orientation);
+        Flag=1;
         
         
     }while( ((R->x) < 0 || (R->x) >= (F->Width)) || ( ((R->y) < 0) || ((R->y) >= (F->Height))) );
@@ -227,7 +171,7 @@ void SimulationUpdate(Robot* R, Floor* F)
 
 void ClearPoint(Floor* F, Robot* R)
 {
-    *( (F->Tiles) + sizeof(bool)*(R->x) + sizeof(bool)*(R->y) * (F->Width)) = LIMPIO;
+    *( (F->Tiles) + sizeof(bool)* ((int)(R->x)) + sizeof(bool)*((int)(R->y)) * (F->Width)) = LIMPIO;
 }
 
 void Simulator(Simulation* Simu)
