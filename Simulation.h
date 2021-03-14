@@ -44,8 +44,8 @@ typedef struct{
 
 typedef struct{
     int Orientation;
-    int x;
-    int y;
+    double x;
+    double y;
 }Robot;
 
 typedef struct{

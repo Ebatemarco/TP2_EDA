@@ -34,7 +34,11 @@ typedef struct {
     int mode;
 } Data_t; //estructura para guardar lo ingresado por el usuario
 
-int parseCmdline(int argc, char *argv [], pCallback p, void *userData);
+
+int parseCmdline(int argc, char *argv [], pCallback p, void *userData); 
+/* Ej: -Mode 2 arranca en el modo 2
+ * Tiene -Mode 1 o 2 ; -Robots n(numero) ; -Height ; -Width  
+ */
 
 #ifdef __cplusplus
 }
