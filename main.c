@@ -26,11 +26,11 @@ int main(int argc, char** argv)
 {
     Data_t userData = {4,6,1,1};
     
-    parseCmdline(argc, argv, &parseCallback, &userData); 
+    //parseCmdline(argc, argv, &parseCallback, &userData); 
     
     printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
-    Simulation* Simulation1 = CreateSimulation(5,5,3)/*(userData.w, userData.h , userData.robots)*/; 
+    Simulation* Simulation1 = CreateSimulation(5,5,5)/*(userData.w, userData.h , userData.robots)*/; 
     Simulator(Simulation1);
     DeleteSimulation(Simulation1); 
     return (EXIT_SUCCESS);  
@@ -42,19 +42,19 @@ int parseCallback(char *key, char *value, void *userData)
     static int i=0;
     if (strcmp(key,"height") == 0)
     {
-        (Data->h)=value;
+        (Data->h)=atoi(value);
     }
     else if (strcmp(key,"width") == 0)
     {
-        (Data->w)=value;
+        (Data->w)=atoi(value);
     }
     else if (strcmp(key,"robots") == 0)
     {
-        (Data->robots)=value;
+        (Data->robots)=atoi(value);
     }
     else if (strcmp(key,"mode") == 0)
     {
-        (Data->mode)=value;
+        (Data->mode)=atoi(value);
     }
     else {
         printf("Error, solo se aceptan los parametros de simulacion\n");
