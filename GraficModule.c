@@ -13,7 +13,7 @@ void PrintFloor(Floor* F, Robot* R, long NoRobots)//Por ahora con solo un robot
         printf("\n");
         for(long j=0; j< (F->Width); j++)
         {
-            for(int k=0; k<NoRobots; k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
+            for(int k=0;k< (sizeof(Robot)*NoRobots);k+=sizeof(Robot))//Revisamos si en la casilla hay algun robot de entre los n que tenemos
             {
                 if( (i == floor(((R+k)->y))) && (j == floor(((R+k)->x))) )
                 {

@@ -74,7 +74,7 @@ bool AllClear(Floor* F); //Si el piso esta limpio da 1
 
 void SimulationUpdate(Robot* R, Floor* F, long NoRobots);
 
-void ClearPoint(Floor* F, Robot* R);
+void ClearPoint(Floor* F, Robot* R, long NoRobots);
 
 void Simulator(Simulation* Simu);
 
