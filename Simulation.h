@@ -30,11 +30,6 @@ extern "C" {
 #define SUCIO 0
 #define LIMPIO 1
 #define TIME 1   
-    
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_YELLOW  "\x1b[33m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 typedef struct{
     long Width;
@@ -67,8 +62,6 @@ void DeleteRobot(Robot* R);
 Simulation* CreateSimulation(long width, long height, long robCount);
 
 void DeleteSimulation(Simulation* S);
-
-void PrintFloor(Floor* F, Robot* R,long NoRobots);//Por ahora con solo un robot
 
 bool AllClear(Floor* F); //Si el piso esta limpio da 1
 
