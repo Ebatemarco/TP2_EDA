@@ -30,6 +30,10 @@ extern "C" {
 
 void PrintFloor(Floor* F, Robot* R,long NoRobots);
 
+void must_init(bool test, const char *description);
+
+int AllegroSupport(void);
+
 #ifdef __cplusplus
 }
 #endif
