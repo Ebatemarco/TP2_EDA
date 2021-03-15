@@ -36,8 +36,6 @@ void DeleteSimulation(Simulation* S)
 {
     DeleteRobot(S->robs);
     DeleteFloor(S->f);
-    DeleteFloor(S->NoRobots);
-    DeleteFloor(S->TickCount);
     free(S);
     return;
 }
