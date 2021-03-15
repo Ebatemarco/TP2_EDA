@@ -68,11 +68,11 @@ Simulation* CreateSimulation(long width, long height, long robCount);
 
 void DeleteSimulation(Simulation* S);
 
-void PrintFloor(Floor* F, Robot* R);//Por ahora con solo un robot
+void PrintFloor(Floor* F, Robot* R,long NoRobots);//Por ahora con solo un robot
 
 bool AllClear(Floor* F); //Si el piso esta limpio da 1
 
-void SimulationUpdate(Robot* R, Floor* F);
+void SimulationUpdate(Robot* R, Floor* F, long NoRobots);
 
 void ClearPoint(Floor* F, Robot* R);
 
