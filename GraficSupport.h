@@ -27,6 +27,10 @@ extern "C" {
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+    
+#define W_SCALE W*5
+#define H_SCALE H*5   
+
 
 void PrintFloor(Floor* F, Robot* R,long NoRobots);
 
