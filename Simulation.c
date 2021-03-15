@@ -187,14 +187,14 @@ void Simulator(Simulation* Simu)
         bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
         for(long i= 0; i< (Simu->f->Height) ; i++ )//Vamos fila a fila
         {
-            printf("\n");
+            
             for(long j=0; j< (Simu->f->Width); j++)//Columna a columna
             {
                 for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
                 {
                     if( (i == floor(((Simu->robs+k)->y))) && (j == floor(((Simu->robs+k)->x))) )
                     {
-                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+10, al_map_rgba_f(1, 0, 0, 1));
+                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+5, al_map_rgba_f(1, 0, 0, 1));
                         HereIsARobot=1;//Marcamos que en la casilla hay robot
                         break; //Si un robot esta en la casilla no nos importa si en la misma hay mas solo la pintamos una vez
                     }
@@ -203,11 +203,11 @@ void Simulator(Simulation* Simu)
                 {
                     if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
                     {
-                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+10, al_map_rgba_f(0, 0, 0, 0));
+                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+5, al_map_rgba_f(0, 0, 0, 0));
                     }
                     else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
                     {
-                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+10, al_map_rgba_f(1, 1, 1, 1));
+                        al_draw_filled_rectangle(varj1, vari1, varj2+10, vari2+5, al_map_rgba_f(1, 1, 1, 1));
                     }
                 }
                 HereIsARobot=0;//Reiniciamos el flag
@@ -217,8 +217,8 @@ void Simulator(Simulation* Simu)
             }
             varj1=0;
             varj2=0;
-            vari1+=10+1;
-            vari1+=10+1;
+            vari1+=5+1;
+            vari1+=5+1;
 
         }
         
