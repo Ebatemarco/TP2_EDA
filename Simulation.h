@@ -53,6 +53,7 @@ typedef struct{
     Robot * robs;
     Floor * f;
     long TickCount; 
+    long NoRobots;
 }Simulation;
 
 Floor* CreateFloor(long width, long height);

@@ -14,6 +14,7 @@ Simulation* CreateSimulation(long width, long height, long robCount)
         Sim->f= CreateFloor(width, height);
         Sim->robs = CreateRobots(robCount,width,height); 
         Sim->TickCount= 0;
+        Sim->NoRobots=robCount;
         if( ((Sim->f)!= NULL) && ((Sim->robs)!=NULL) )
         {
             return Sim;
@@ -35,6 +36,8 @@ void DeleteSimulation(Simulation* S)
 {
     DeleteRobot(S->robs);
     DeleteFloor(S->f);
+    DeleteFloor(S->NoRobots);
+    DeleteFloor(S->TickCount);
     free(S);
     return;
 }
