@@ -18,8 +18,9 @@ int parseCmdline(int argc, char *argv [], pCallback p, void *userData)
             {
                 if (argv[i][1] == '\0') //si es una opcion sin clave
                 {
-                    return ERROR1;
                     printf("ERROR 1\n");
+                    return ERROR1;
+
                 }
                 else 
                 {
@@ -29,14 +30,17 @@ int parseCmdline(int argc, char *argv [], pCallback p, void *userData)
             }
             else //si es lo ultimo ingresado y empieza con -, hay error tipo 2
             {
-                return ERROR2;
                 printf("ERROR 2\n");
+                return ERROR2;
+
             }
         }
-        if(result != OK)
+        if(result != 0)
         {
             return result;
         }
     }
+
+    return result;
 
 }

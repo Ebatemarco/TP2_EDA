@@ -19,6 +19,7 @@ extern "C" {
 #endif
     
 #include <string.h>
+#include <stdio.h>
     
 #define ERROR1 -1
 #define ERROR2 -2
