@@ -12,7 +12,7 @@ Robot* CreateRobots(int NoRobots, long width, long height)
     Robot* RobotsArr = malloc(sizeof(Robot)*NoRobots);//Reserbamos el espacio para un arreglo de N Robots
     if(RobotsArr != NULL)
     {
-        for(int i=0;i< (sizeof(Robot)*NoRobots);i+=sizeof(Robot))
+        for(int i=0;i< (NoRobots);i++)
         {
            
                 (RobotsArr+i)->x = (rand() % width); //Le asignamos a cada robot una posicion en X
