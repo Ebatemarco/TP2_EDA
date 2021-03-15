@@ -35,7 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/FloorModule.o \
+	${OBJECTDIR}/GraficModule.o \
 	${OBJECTDIR}/ParseCmLine.o \
+	${OBJECTDIR}/RobotsModule.o \
 	${OBJECTDIR}/Simulation.o \
 	${OBJECTDIR}/main.o
 
@@ -64,10 +67,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp2_eda: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp2_eda ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/FloorModule.o: FloorModule.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FloorModule.o FloorModule.c
+
+${OBJECTDIR}/GraficModule.o: GraficModule.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GraficModule.o GraficModule.c
+
 ${OBJECTDIR}/ParseCmLine.o: ParseCmLine.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ParseCmLine.o ParseCmLine.c
+
+${OBJECTDIR}/RobotsModule.o: RobotsModule.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RobotsModule.o RobotsModule.c
 
 ${OBJECTDIR}/Simulation.o: Simulation.c
 	${MKDIR} -p ${OBJECTDIR}

@@ -6,68 +6,6 @@
 
 #include "Simulation.h"
 
-
-Floor* CreateFloor(long width, long height)
-{
-    Floor * Piso = (Floor*) malloc(sizeof(Floor));
-    if(Piso != NULL)
-    {
-        Piso->Height=height;
-        Piso->Width=width;
-        Piso->Tiles= malloc(sizeof(bool)* width * height);
-        
-        for(int i=0; i<height;i++)//Lo ensucio
-        {
-            for(int j=0; j<width;j++)
-            {
-                (Piso->Tiles)[i+j]=SUCIO;
-            }
-        }
-        return Piso; 
-    }
-    else
-    {
-        free(Piso);
-        return NULL; 
-    }
-}
-
-void DeleteFloor(Floor* f)
-{
-    free(f->Tiles);
-    free(f);
-    return; 
-}
-
-Robot* CreateRobots(int NoRobots, long width, long height)
-{
-    srand( time(0)); 
-    Robot* RobotsArr = malloc(sizeof(Robot)*NoRobots);//Reserbamos el espacio para un arreglo de N Robots
-    if(RobotsArr != NULL)
-    {
-        for(int i=0;i< (sizeof(Robot)*NoRobots);i+=sizeof(Robot))
-        {
-           
-                (RobotsArr+i)->x = (rand() % width); //Le asignamos a cada robot una posicion en X
-                (RobotsArr+i)->y = (rand() % height);// Una en y
-                (RobotsArr+i)->Orientation = (rand() % 360);// y una orientacion 
-            
-        }
-        return RobotsArr; 
-    }
-    else
-    {
-        free(RobotsArr);
-        return NULL; 
-    }
-}
-
-void DeleteRobot(Robot* R)
-{
-    free(R);
-    return; 
-}
-
 Simulation* CreateSimulation(long width, long height, long robCount)
 {
     Simulation* Sim = malloc(sizeof(Simulation));
@@ -101,36 +39,7 @@ void DeleteSimulation(Simulation* S)
     return;
 }
 
-void PrintFloor(Floor* F, Robot* R)//Por ahora con solo un robot
-{
-    
-    for(long i= 0; i< (F->Height) ; i++ )
-    {
-        printf("\n");
-        for(long j=0; j< (F->Width); j++)
-        {
-            if( (i == floor((R->y))) && (j == floor((R->x))) )
-            {
-                printf(ANSI_COLOR_RED  "* "  ANSI_COLOR_RESET);
-            }
-            else
-            {
-                if( ((F->Tiles)[i*(F->Width)+j]) == SUCIO) 
-                {
-                    printf(ANSI_COLOR_GREEN  "* "  ANSI_COLOR_RESET);
-                }
-                else if(((F->Tiles)[i*(F->Width)+j]) == LIMPIO) 
-                {
-                    printf(ANSI_COLOR_YELLOW  "* "  ANSI_COLOR_RESET);
-                }
-            }
-                
-        }
-        
-    }
-    printf("\n");
-    
-}
+
 
 bool AllClear(Floor* F) //Si el piso esta limpio da 1 
 {
@@ -145,6 +54,7 @@ bool AllClear(Floor* F) //Si el piso esta limpio da 1
     }
     return 1; //Si ya revisamos todas las casillas y ninguna esta sucia devolvemos 1
 }
+
 void SimulationUpdate(Robot* R, Floor* F)
 {
     
