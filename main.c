@@ -51,8 +51,6 @@ int main(int argc, char** argv)
                 Simulator2(Simulation1);
                 t2 += Simulation1->TickCount;
                 DeleteSimulation(Simulation1);
-
-
             }
             n++;
             t2 /= 1000;

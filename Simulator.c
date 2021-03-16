@@ -23,7 +23,7 @@ bool AllClear(Floor* F) //Si el piso esta limpio da 1
 
 void Simulator(Simulation* Simu)
 {
-    
+    int tickCount = 0;
     //Modulo Allegro
     must_init(al_init(), "allegro");
 
@@ -53,7 +53,7 @@ void Simulator(Simulation* Simu)
     {
         al_wait_for_event(queue, &event);
         
-        SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
+        tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
         PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso
         
@@ -103,6 +103,7 @@ void Simulator(Simulation* Simu)
     al_destroy_event_queue(queue);
     
     printf("Todo Limpio (%d)\n", AllClear(Simu->f));
+    Simu->TickCount = tickCount; 
     return;
 }
 
