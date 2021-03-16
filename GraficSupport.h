@@ -38,6 +38,8 @@ void must_init(bool test, const char *description);
 
 int AllegroSupport(void);
 
+void Grafic(long PromT, int N);
+
 #ifdef __cplusplus
 }
 #endif

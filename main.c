@@ -24,7 +24,7 @@ int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {5,4,1,1};
+    Data_t userData = {5,4,1,2};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
@@ -34,7 +34,9 @@ int main(int argc, char** argv)
     {
         Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
         Simulator(Simulation1);
+        printf("Cantidad de Ticks: %d", Simulation1->TickCount);
         DeleteSimulation(Simulation1);
+        
     }
     else if (userData.mode == 2) 
     {
@@ -47,17 +49,18 @@ int main(int argc, char** argv)
             t2 = 0;
             for (int i = 0; i < 1000; ++i) 
             {
-                Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, n);
-                Simulator2(Simulation1);
-                t2 += Simulation1->TickCount;
-                DeleteSimulation(Simulation1);
+                Simulation* Simulation2 = CreateSimulation(userData.w, userData.h, n);
+                Simulator2(Simulation2);
+                t2 += Simulation2->TickCount;
+                DeleteSimulation(Simulation2);
             }
-            n++;
             t2 /= 1000;
-            printf("promedio: %i", t2);
-
+            Grafic(t2, n);
+            n++;
 
         } while (abs(t1 - t2) > 0.1);
+        printf("promedio: %i\n", t2);
+        
     } 
     return (EXIT_SUCCESS);  
 }
@@ -65,19 +68,19 @@ int main(int argc, char** argv)
 int parseCallback(char *key, char *value, void *userData)
 {
     Data_t *Data= userData;
-    if (strcmp(key,"height") == 0)
+    if (strcmp(key,"H") == 0)
     {
         (Data->h)=atoi(value);
     }
-    else if (strcmp(key,"width") == 0)
+    else if (strcmp(key,"W") == 0)
     {
         (Data->w)=atoi(value);
     }
-    else if (strcmp(key,"robots") == 0)
+    else if (strcmp(key,"R") == 0)
     {
         (Data->robots)=atoi(value);
     }
-    else if (strcmp(key,"mode") == 0)
+    else if (strcmp(key,"M") == 0)
     {
         (Data->mode)=atoi(value);
     }
