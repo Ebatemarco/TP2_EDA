@@ -33,7 +33,7 @@ Simulation* CreateSimulation(long width, long height, long robCount)
     }
 }
 
-void SimulationUpdate(Robot* R, Floor* F, long NoRobots)
+int SimulationUpdate(Robot* R, Floor* F, long NoRobots)
 {
     for(int i=0; i < (NoRobots);i++)
     {
@@ -55,7 +55,7 @@ void SimulationUpdate(Robot* R, Floor* F, long NoRobots)
 
         }while( (((R+i)->x) < 0 || ((R+i)->x) >= (F->Width)) || ( (((R+i)->y) < 0) || (((R+i)->y) >= (F->Height))) );
     }
-     
+    return 1; 
 }
 
 void ClearPoint(Floor* F, Robot* R, long NoRobots)

@@ -48,7 +48,7 @@ int main(int argc, char** argv)
             for (int i = 0; i < 1000; ++i) 
             {
                 Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, n);
-                Simulator(Simulation1);
+                Simulator2(Simulation1);
                 t2 += Simulation1->TickCount;
                 DeleteSimulation(Simulation1);
 

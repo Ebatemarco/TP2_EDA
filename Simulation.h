@@ -65,11 +65,13 @@ void DeleteSimulation(Simulation* S);
 
 bool AllClear(Floor* F); //Si el piso esta limpio da 1
 
-void SimulationUpdate(Robot* R, Floor* F, long NoRobots);
+int SimulationUpdate(Robot* R, Floor* F, long NoRobots);
 
 void ClearPoint(Floor* F, Robot* R, long NoRobots);
 
 void Simulator(Simulation* Simu);
+
+void Simulator2(Simulation* Simu);
 
 
 #ifdef __cplusplus
