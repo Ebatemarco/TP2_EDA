@@ -104,7 +104,7 @@ void Simulator(Simulation* Simu)
     
     printf("Todo Limpio (%d)\n", AllClear(Simu->f));
     Simu->TickCount = tickCount; 
-    return;
+    
 }
 
 void Simulator2(Simulation* Simu)
@@ -118,4 +118,66 @@ void Simulator2(Simulation* Simu)
         
     }
     Simu->TickCount = tickCount; 
+}
+
+void Modo2Funtion(int w, int h)
+{
+    //Modulo Allegro
+    must_init(al_init(), "allegro");
+
+    ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
+    must_init(timer, "timer");
+
+    ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
+    must_init(queue, "queue");
+
+    ALLEGRO_DISPLAY* disp = al_create_display(1000, 1000);
+    must_init(disp, "display");
+
+    ALLEGRO_FONT* font = al_create_builtin_font();
+    must_init(font, "font");
+    
+    must_init(al_init_primitives_addon(), "primitives");
+    
+    al_register_event_source(queue, al_get_display_event_source(disp));
+    al_register_event_source(queue, al_get_timer_event_source(timer));
+
+    
+    ALLEGRO_EVENT event;
+    
+    al_start_timer(timer);
+    
+    long t2 = 0;
+    long t1 = 0;
+    int n = 1;
+    
+    do
+    {
+        al_wait_for_event(queue, &event);
+        t1 = t2;
+        t2 = 0;
+        for (int i = 0; i < 1000; ++i) 
+        {
+            Simulation* Simulation2 = CreateSimulation(w, h, n);
+            Simulator2(Simulation2);
+            t2 += Simulation2->TickCount;
+            DeleteSimulation(Simulation2);
+        }
+        t2 /= 1000;
+        printf("%d\n", n);
+        al_draw_filled_circle(n*10, 500-t2, 5, al_map_rgb_f(1, 1, 1));
+        
+        n++;
+        al_flip_display();
+        
+    }while (abs(t1 - t2) > 0.1);
+    
+    printf("promedio: %i\n", t2);
+    
+    al_rest(5);
+    
+    al_destroy_font(font);
+    al_destroy_display(disp);
+    al_destroy_timer(timer);
+    al_destroy_event_queue(queue);
 }

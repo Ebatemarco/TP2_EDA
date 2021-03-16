@@ -73,6 +73,8 @@ void Simulator(Simulation* Simu);
 
 void Simulator2(Simulation* Simu);
 
+void Modo2Funtion(int w, int h);
+
 
 #ifdef __cplusplus
 }

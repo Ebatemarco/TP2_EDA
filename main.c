@@ -24,7 +24,7 @@ int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {5,4,1,2};
+    Data_t userData = {10,10,1,2};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
@@ -40,26 +40,8 @@ int main(int argc, char** argv)
     }
     else if (userData.mode == 2) 
     {
-        long t2 = 0;
-        long t1 = 0;
-        int n = 1;
-        do
-        {
-            t1 = t2;
-            t2 = 0;
-            for (int i = 0; i < 1000; ++i) 
-            {
-                Simulation* Simulation2 = CreateSimulation(userData.w, userData.h, n);
-                Simulator2(Simulation2);
-                t2 += Simulation2->TickCount;
-                DeleteSimulation(Simulation2);
-            }
-            t2 /= 1000;
-            Grafic(t2, n);
-            n++;
-
-        } while (abs(t1 - t2) > 0.1);
-        printf("promedio: %i\n", t2);
+        
+        Modo2Funtion(userData.w, userData.h);
         
     } 
     return (EXIT_SUCCESS);  
