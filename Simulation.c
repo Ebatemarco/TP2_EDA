@@ -129,10 +129,10 @@ void Simulator(Simulation* Simu)
         PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso
         
         bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
-        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=10)//Vamos fila a fila
+        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=11)//Vamos fila a fila
         {
             
-            for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=10)//Columna a columna
+            for(long j=0, var2 = 0; j< (Simu->f->Height); j++, var2+=11)//Columna a columna
             {
                 for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
                 {
@@ -147,7 +147,7 @@ void Simulator(Simulation* Simu)
                 {
                     if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
                     {
-                        al_draw_filled_rectangle(var2, var, var2+10, var+10, al_map_rgba_f(0, 0, 0, 0));
+                        al_draw_filled_rectangle(var2, var, var2+10, var+10, al_map_rgba_f(0, 1, 0, 0));
                     }
                     else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
                     {
