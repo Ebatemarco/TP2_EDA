@@ -28,11 +28,11 @@ void PrintFloor(Floor* F, Robot* R, long NoRobots)
             }
             if(!HereIsARobot)//Si en la casilla actual no hay un robot Pinto acorde
             {
-                if( ((F->Tiles)[i*(F->Width)+j]) == SUCIO) //Veo si esta sucia
+                if( ((F->Tiles)[i*(F->Height)+j]) == SUCIO) //Veo si esta sucia
                 {
                     printf(ANSI_COLOR_GREEN  "* "  ANSI_COLOR_RESET);
                 }
-                else if(((F->Tiles)[i*(F->Width)+j]) == LIMPIO) //veo si esta limpia 
+                else if(((F->Tiles)[i*(F->Height)+j]) == LIMPIO) //veo si esta limpia 
                 {
                     printf(ANSI_COLOR_YELLOW  "* "  ANSI_COLOR_RESET);
                 }
