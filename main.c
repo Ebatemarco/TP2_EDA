@@ -30,9 +30,37 @@ int main(int argc, char** argv)
     
     printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
-    Simulation* Simulation1 = CreateSimulation(userData.w, userData.h , userData.robots); 
-    Simulator(Simulation1);
-    DeleteSimulation(Simulation1); 
+    if (userData.mode == 1) 
+    {
+        Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
+        Simulator(Simulation1);
+        DeleteSimulation(Simulation1);
+    }
+    else if (userData.mode == 2) 
+    {
+        long t2 = 0;
+        long t1 = 0;
+        int n = 1;
+        do
+        {
+            t1 = t2;
+            t2 = 0;
+            for (int i = 0; i < 1000; ++i) 
+            {
+                Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, n);
+                Simulator(Simulation1);
+                t2 += Simulation1->TickCount;
+                DeleteSimulation(Simulation1);
+
+
+            }
+            n++;
+            t2 /= 1000;
+            printf("promedio: %i", t2);
+
+
+        } while (abs(t1 - t2) > 0.1);
+    } 
     return (EXIT_SUCCESS);  
 }
 
