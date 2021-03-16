@@ -112,7 +112,6 @@ void Simulator2(Simulation* Simu)
     int tickCount=0;
     while( !(AllClear(Simu->f) ))
     {
-        al_wait_for_event(queue, &event);
         
         tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
