@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/ParseCmLine.o \
 	${OBJECTDIR}/RobotsModule.o \
 	${OBJECTDIR}/Simulation.o \
+	${OBJECTDIR}/SimulationModule.o \
 	${OBJECTDIR}/main.o
 
 
@@ -91,6 +92,11 @@ ${OBJECTDIR}/Simulation.o: Simulation.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Simulation.o Simulation.c
+
+${OBJECTDIR}/SimulationModule.o: SimulationModule.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SimulationModule.o SimulationModule.c
 
 ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}
