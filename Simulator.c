@@ -146,7 +146,7 @@ void Modo2Funtion(int w, int h)
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
     must_init(queue, "queue");
 
-    ALLEGRO_DISPLAY* disp = al_create_display(500, 500);
+    ALLEGRO_DISPLAY* disp = al_create_display(500, 350);
     must_init(disp, "display");
 
     ALLEGRO_FONT* font = al_create_builtin_font();
@@ -166,13 +166,19 @@ void Modo2Funtion(int w, int h)
     long t1 = 0;
     int n = 1;
     int flag1=0, flag2 = 0, in_max; 
+    int p1=0, p2=0; 
+    
+    for(int k= 0; k<=500; k+=50)
+    {
+        al_draw_line(k, 500, k, 0, al_map_rgb_f(0, 0, 1), 2);
+    }
     
     do
     {
         al_wait_for_event(queue, &event);
         t1 = t2;
         t2 = 0;
-        for (int i = 0; i < 1000; ++i) 
+        for (int i = 0; i < 1000; i++) 
         {
             Simulation* Simulation2 = CreateSimulation(w, h, n);
             Simulator2(Simulation2);
@@ -180,7 +186,34 @@ void Modo2Funtion(int w, int h)
             DeleteSimulation(Simulation2);
         }
         t2 /= 1000;
+        if( abs(350-t2) > 500 )
+        {
+            al_draw_filled_circle(n*50, 0, 5, al_map_rgb_f(1, 1, 1));
+        }
+        else
+        {
+            al_draw_filled_circle(n*50, abs(350-t2), 5, al_map_rgb_f(1, 1, 1));
+        }
         printf("n: %d\n", n);
+        printf("t2: %d\n", t2);
+        n++;
+        al_flip_display();
+        
+        
+        
+    }while (abs(t1 - t2) > 0.1);
+    
+    printf("Promedio: %i\n", t2);
+    
+    al_rest(10);
+    
+    al_destroy_font(font);
+    al_destroy_display(disp);
+    al_destroy_timer(timer);
+    al_destroy_event_queue(queue);
+}
+
+/*printf("n: %d\n", n);
         printf("t2: %d\n", t2);
         
         if(flag2==0 && flag1>0 )
@@ -199,16 +232,10 @@ void Modo2Funtion(int w, int h)
         al_draw_filled_circle(n*10,( (t2) * (500) )/ (in_max), 5, al_map_rgb_f(1, 1, 1));
         flag1=t2;
         n++;
-        al_flip_display();
-        
-    }while (abs(t1 - t2) > 0.1);
-    
-    printf("promedio: %i\n", t2);
-    
-    al_rest(10);
-    
-    al_destroy_font(font);
-    al_destroy_display(disp);
-    al_destroy_timer(timer);
-    al_destroy_event_queue(queue);
-}
+        p1=n;
+        if(p1%2)
+        {
+            p2=( (t2) * (500) )/ (in_max);
+        }
+        al_draw_line(p1, p2, n*10, ( (t2) * (500) )/ (in_max), al_map_rgb_f(1, 0, 0), 2);
+        al_flip_display();*/
