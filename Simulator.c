@@ -134,8 +134,6 @@ void Simulator2(Simulation* Simu)
         cont++;
         
     }
-    printf("tickCount Simulato22 :%d\n", tickCount);
-    printf("Count :%d\n", cont);
     (Simu->TickCount) = tickCount; 
 }
 
@@ -187,7 +185,6 @@ void Modo2Funtion(int w, int h)
             Simulation* Simulation2 = CreateSimulation(w, h, n);
             Simulator2(Simulation2);
             t2 += (Simulation2->TickCount);
-            printf(" t2 += (Simulation2->TickCount) : %d\n", t2);
             DeleteSimulation(Simulation2);
         }
         t2 /= 1000;
@@ -199,8 +196,8 @@ void Modo2Funtion(int w, int h)
         {
             al_draw_filled_circle(n*50, abs(350-t2), 5, al_map_rgb_f(1, 1, 1));
         }
-        printf("n: %d\n", n);
-        printf("t2: %d\n", t2);
+        /*printf("n: %d\n", n);
+        printf("t2: %d\n", t2);*/
         n++;
         al_flip_display();
         
