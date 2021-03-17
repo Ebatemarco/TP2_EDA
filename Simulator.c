@@ -49,15 +49,10 @@ void Simulator(Simulation* Simu)
     
     al_start_timer(timer);
     
-    while( !(AllClear(Simu->f) ))
+    while( !(AllClear(Simu->f) ))//Mientras el piso este sucio segumos simulando
     {
         al_wait_for_event(queue, &event);
         
-        tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
-        ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
-        PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso en la terminal
-        
-        bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
         for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=floor(H_SCALE/(Simu->f->Height)))//Vamos fila a fila
         {
             
@@ -80,18 +75,42 @@ void Simulator(Simulation* Simu)
                         al_draw_filled_circle(((Simu->robs+k)->x)*(W_SCALE/(Simu->f->Width))+1,((Simu->robs+k)->y)*(H_SCALE/(Simu->f->Height))+1, 0.2*sqrt((H_SCALE/(Simu->f->Height))*(W_SCALE/(Simu->f->Width))), al_map_rgb_f(0, 0, 1));
                     }
                 }
-                
-
             }
-            
-
         }
-        
-        
         al_flip_display();
         al_rest(1);
         
-    }//Mientras el piso este sucio segumos simulando
+        tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
+        ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
+        
+    }
+    
+    for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=floor(H_SCALE/(Simu->f->Height)))//Vamos fila a fila
+    {
+
+        for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=floor(W_SCALE/(Simu->f->Width)))//Columna a columna
+        {
+
+            if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
+            {
+                al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/(Simu->f->Width))-1, var+floor(H_SCALE/(Simu->f->Height))-1, al_map_rgba_f(0, 1, 0, 0));
+            }
+            else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
+            {
+                al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/(Simu->f->Width))-1, var+floor(H_SCALE/(Simu->f->Height))-1, al_map_rgba_f(1, 1, 1, 1));
+            }
+
+            for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
+            {
+                if( (i == floor(((Simu->robs+k)->y))) && (j == floor(((Simu->robs+k)->x))) )
+                {
+                    al_draw_filled_circle(((Simu->robs+k)->x)*(W_SCALE/(Simu->f->Width))+1,((Simu->robs+k)->y)*(H_SCALE/(Simu->f->Height))+1, 0.2*sqrt((H_SCALE/(Simu->f->Height))*(W_SCALE/(Simu->f->Width))), al_map_rgb_f(0, 0, 1));
+                }
+            }
+        }
+    }
+    al_flip_display();
+    al_rest(1);
     
     al_destroy_font(font);
     al_destroy_display(disp);
