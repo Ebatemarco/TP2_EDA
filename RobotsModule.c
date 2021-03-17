@@ -8,7 +8,7 @@
 
 Robot* CreateRobots(int NoRobots, long width, long height)
 {
-    srand( time(0)); 
+    srand( time(NULL)); 
     Robot* RobotsArr = malloc(sizeof(Robot)*NoRobots);//Reserbamos el espacio para un arreglo de N Robots
     if(RobotsArr != NULL)
     {

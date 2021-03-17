@@ -124,7 +124,7 @@ void Simulator(Simulation* Simu)
 
 void Simulator2(Simulation* Simu)
 {
-    int tickCount=0;
+    long tickCount=0;
     while( !(AllClear(Simu->f) ))
     {
         
@@ -132,7 +132,8 @@ void Simulator2(Simulation* Simu)
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
         
     }
-    Simu->TickCount = tickCount; 
+    printf("tickCount Simulato22 :%d\n", tickCount);
+    (Simu->TickCount) = tickCount; 
 }
 
 void Modo2Funtion(int w, int h)
@@ -182,11 +183,12 @@ void Modo2Funtion(int w, int h)
         {
             Simulation* Simulation2 = CreateSimulation(w, h, n);
             Simulator2(Simulation2);
-            t2 += Simulation2->TickCount;
+            t2 += (Simulation2->TickCount);
+            printf(" t2 += (Simulation2->TickCount) : %d\n", t2);
             DeleteSimulation(Simulation2);
         }
         t2 /= 1000;
-        if( abs(350-t2) > 500 )
+        if( abs(350-t2) > 350 )
         {
             al_draw_filled_circle(n*50, 0, 5, al_map_rgb_f(1, 1, 1));
         }
@@ -212,30 +214,3 @@ void Modo2Funtion(int w, int h)
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
 }
-
-/*printf("n: %d\n", n);
-        printf("t2: %d\n", t2);
-        
-        if(flag2==0 && flag1>0 )
-        {
-            flag2=t2;
-            if(flag2 > flag1)
-            {
-                in_max = flag2; 
-            }
-            else 
-            {
-                in_max = flag1;
-            }
-        }
-        
-        al_draw_filled_circle(n*10,( (t2) * (500) )/ (in_max), 5, al_map_rgb_f(1, 1, 1));
-        flag1=t2;
-        n++;
-        p1=n;
-        if(p1%2)
-        {
-            p2=( (t2) * (500) )/ (in_max);
-        }
-        al_draw_line(p1, p2, n*10, ( (t2) * (500) )/ (in_max), al_map_rgb_f(1, 0, 0), 2);
-        al_flip_display();*/

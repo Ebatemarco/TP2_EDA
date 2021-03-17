@@ -37,7 +37,7 @@ int SimulationUpdate(Robot* R, Floor* F, long NoRobots)
 {
     for(int i=0; i < (NoRobots);i++)//Actualizamos la posicion de cada robot
     {
-        srand(time(0));
+        srand(time(NULL));
         int Flag = 0;//Creamos el flag para los cuadrantes
         do
         {
