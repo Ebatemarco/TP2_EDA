@@ -13,6 +13,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -24,18 +26,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -H -M -W -R </runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -M -W -R</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -M -W 10 -R -2</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -M 1 -W 10 -R 12</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 100 -W 70 -R 50 -M 1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -W 10 -R 50 -M 1</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -W 10 -R 10 -M 1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 3 -W 2 -R 1 -M 1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 3 -W 2 -R 1 -M 2</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}" -H 5 -W 5 -R 1 -M 2</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -W 10 -R 1 -M 10</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -H 10 -W 10 -R 10 -M 1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -H 5 -W 5 -R 1 -M 1</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -H 5 -W 5 -R 1 -M 2</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -H 5 -W 5 -R 1 -M 1</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

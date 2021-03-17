@@ -41,7 +41,7 @@ int main(int argc, char** argv)
                 {
                     Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
                     Simulator(Simulation1);
-                    printf("Cantidad de Ticks: %d", Simulation1->TickCount);
+                    printf("Cantidad de Ticks: %ld", Simulation1->TickCount);
                     DeleteSimulation(Simulation1);
 
                 }

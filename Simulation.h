@@ -63,7 +63,7 @@ Simulation* CreateSimulation(long width, long height, long robCount);
 
 void DeleteSimulation(Simulation* S);
 
-bool AllClear(Floor* F); //Si el piso esta limpio da 1
+int AllClear(Floor* F); //Si el piso esta limpio da 1
 
 int SimulationUpdate(Robot* R, Floor* F, long NoRobots);
 

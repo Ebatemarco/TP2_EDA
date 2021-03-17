@@ -7,7 +7,7 @@
 #include "Simulation.h"
 #include "GraficSupport.h"
 
-bool AllClear(Floor* F) //Si el piso esta limpio da 1 
+int AllClear(Floor* F) //Si el piso esta limpio da 1 
 {
     for(long i= 0; i < ((F->Height)*(F->Width)) ; i+=(F->Width) )
     {
@@ -125,14 +125,17 @@ void Simulator(Simulation* Simu)
 void Simulator2(Simulation* Simu)
 {
     long tickCount=0;
-    while( !(AllClear(Simu->f) ))
+    int cont=0;
+    while( !(AllClear(Simu->f) ) )
     {
         
         tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
+        cont++;
         
     }
     printf("tickCount Simulato22 :%d\n", tickCount);
+    printf("Count :%d\n", cont);
     (Simu->TickCount) = tickCount; 
 }
 

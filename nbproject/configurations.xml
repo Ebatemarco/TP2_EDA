@@ -45,6 +45,7 @@
       </toolsSet>
       <compileType>
         <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp2_eda</output>
           <linkerLibItems>
             <linkerLibStdlibItem>Mathematics</linkerLibStdlibItem>
             <linkerOptionItem>`pkg-config --libs allegro-5`</linkerOptionItem>
@@ -60,6 +61,7 @@
             <linkerOptionItem>`pkg-config --libs allegro_primitives-5`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs allegro_ttf-5`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs allegro_video-5`</linkerOptionItem>
+            <linkerLibStdlibItem>DataCompression</linkerLibStdlibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
