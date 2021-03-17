@@ -131,7 +131,7 @@ void Modo2Funtion(int w, int h)
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
     must_init(queue, "queue");
 
-    ALLEGRO_DISPLAY* disp = al_create_display(1000, 1000);
+    ALLEGRO_DISPLAY* disp = al_create_display(500, 500);
     must_init(disp, "display");
 
     ALLEGRO_FONT* font = al_create_builtin_font();
@@ -150,6 +150,7 @@ void Modo2Funtion(int w, int h)
     long t2 = 0;
     long t1 = 0;
     int n = 1;
+    int flag1=0, flag2 = 0, in_max; 
     
     do
     {
@@ -164,9 +165,24 @@ void Modo2Funtion(int w, int h)
             DeleteSimulation(Simulation2);
         }
         t2 /= 1000;
-        printf("%d\n", n);
-        al_draw_filled_circle(n*10, 500-t2, 5, al_map_rgb_f(1, 1, 1));
+        printf("n: %d\n", n);
+        printf("t2: %d\n", t2);
         
+        if(flag2==0 && flag1>0 )
+        {
+            flag2=t2;
+            if(flag2 > flag1)
+            {
+                in_max = flag2; 
+            }
+            else 
+            {
+                in_max = flag1;
+            }
+        }
+        
+        al_draw_filled_circle(n*10,( (t2) * (500) )/ (in_max), 5, al_map_rgb_f(1, 1, 1));
+        flag1=t2;
         n++;
         al_flip_display();
         
@@ -174,7 +190,7 @@ void Modo2Funtion(int w, int h)
     
     printf("promedio: %i\n", t2);
     
-    al_rest(5);
+    al_rest(10);
     
     al_destroy_font(font);
     al_destroy_display(disp);

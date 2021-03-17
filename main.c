@@ -24,26 +24,33 @@ int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {10,10,1,2};
+    Data_t userData = {3,2,1,1};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
     printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
-    if (userData.mode == 1) 
+    if( (userData.h<=H) && (userData.w<=W))
     {
-        Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
-        Simulator(Simulation1);
-        printf("Cantidad de Ticks: %d", Simulation1->TickCount);
-        DeleteSimulation(Simulation1);
-        
+        if (userData.mode == 1) 
+        {
+            Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
+            Simulator(Simulation1);
+            printf("Cantidad de Ticks: %d", Simulation1->TickCount);
+            DeleteSimulation(Simulation1);
+
+        }
+        else if (userData.mode == 2) 
+        {
+
+            Modo2Funtion(userData.w, userData.h);
+
+        } 
     }
-    else if (userData.mode == 2) 
+    else
     {
-        
-        Modo2Funtion(userData.w, userData.h);
-        
-    } 
+        printf("ERROR: Invalid Height or Width");
+    }
     return (EXIT_SUCCESS);  
 }
 

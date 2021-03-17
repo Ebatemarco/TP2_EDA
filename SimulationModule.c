@@ -35,7 +35,7 @@ Simulation* CreateSimulation(long width, long height, long robCount)
 
 int SimulationUpdate(Robot* R, Floor* F, long NoRobots)
 {
-    for(int i=0; i < (NoRobots);i++)
+    for(int i=0; i < (NoRobots);i++)//Actualizamos la posicion de cada robot
     {
         srand(time(0));
         int Flag = 0;//Creamos el flag para los cuadrantes
