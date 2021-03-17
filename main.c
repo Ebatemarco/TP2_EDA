@@ -30,13 +30,14 @@ int main(int argc, char** argv)
     
     printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
-    if( ( (userData.h<=H) && (userData.w>0) ) && ( (userData.w<=W) && (userData.w>0) ) )
+    if( ( (userData.h <= H) && (userData.w > 0) ) && ( (userData.w <= W) && (userData.w>0) ) )
     {
         if((userData.mode ==1) || (userData.mode==2))
         {
          
             if(userData.robots > 0)
             {
+                printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
                 if (userData.mode == 1) 
                 {
                     Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
@@ -88,7 +89,8 @@ int parseCallback(char *key, char *value, void *userData)
     {
         (Data->mode)=atoi(value);
     }
-    else {
+    else 
+    {
         printf("Error, solo se aceptan los parametros de simulacion\n");
         return ERROR;
     }

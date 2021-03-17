@@ -8,7 +8,7 @@
 
 int parseCmdline(int argc, char *argv [], pCallback p, void *userData) 
 {
-    int result;
+    int result=0;
     for (int i=1; i<argc; ++i) 
     {
 
