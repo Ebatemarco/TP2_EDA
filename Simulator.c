@@ -33,7 +33,7 @@ void Simulator(Simulation* Simu)
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
     must_init(queue, "queue");
 
-    ALLEGRO_DISPLAY* disp = al_create_display(H_SCALE, W_SCALE);
+    ALLEGRO_DISPLAY* disp = al_create_display(W_SCALE, H_SCALE);
     must_init(disp, "display");
 
     ALLEGRO_FONT* font = al_create_builtin_font();
@@ -49,25 +49,33 @@ void Simulator(Simulation* Simu)
     
     al_start_timer(timer);
     
+    /*for(int h= 0; h < H_SCALE; h+=6)
+    {
+        for(int w=0;w < W_SCALE; w+=8)
+        {
+            al_draw_filled_rectangle(w, h, w+7, h+5, al_map_rgba_f(0, 1, 0, 0));
+        }
+    }*/
+    
     while( !(AllClear(Simu->f) ))
     {
         al_wait_for_event(queue, &event);
         
         tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
-        PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso
+        //PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso
         
         bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
-        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=11)//Vamos fila a fila
+        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=5)//Vamos fila a fila
         {
             
-            for(long j=0, var2 = 0; j< (Simu->f->Height); j++, var2+=11)//Columna a columna
+            for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=5)//Columna a columna
             {
                 for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
                 {
                     if( (i == floor(((Simu->robs+k)->y))) && (j == floor(((Simu->robs+k)->x))) )
                     {
-                        al_draw_filled_rectangle(var2, var, var2+10, var+10, al_map_rgba_f(1, 0, 0, 1));
+                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(1, 0, 0, 1));
                         HereIsARobot=1;//Marcamos que en la casilla hay robot
                         break; //Si un robot esta en la casilla no nos importa si en la misma hay mas solo la pintamos una vez
                     }
@@ -76,11 +84,11 @@ void Simulator(Simulation* Simu)
                 {
                     if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
                     {
-                        al_draw_filled_rectangle(var2, var, var2+10, var+10, al_map_rgba_f(0, 1, 0, 0));
+                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(0, 1, 0, 0));
                     }
                     else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
                     {
-                        al_draw_filled_rectangle(var2, var, var2+10, var+10, al_map_rgba_f(1, 1, 1, 1));
+                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(1, 1, 1, 1));
                     }
                 }
                 HereIsARobot=0;//Reiniciamos el flag

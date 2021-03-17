@@ -24,7 +24,7 @@ int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {3,2,1,1};
+    Data_t userData = {H,W,50,1};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
