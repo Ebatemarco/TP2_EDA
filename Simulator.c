@@ -66,16 +66,16 @@ void Simulator(Simulation* Simu)
         //PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso
         
         bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
-        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=5)//Vamos fila a fila
+        for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=floor(H_SCALE/H))//Vamos fila a fila
         {
             
-            for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=5)//Columna a columna
+            for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=floor(W_SCALE/W))//Columna a columna
             {
                 for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
                 {
                     if( (i == floor(((Simu->robs+k)->y))) && (j == floor(((Simu->robs+k)->x))) )
                     {
-                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(1, 0, 0, 1));
+                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(1, 0, 0, 1));
                         HereIsARobot=1;//Marcamos que en la casilla hay robot
                         break; //Si un robot esta en la casilla no nos importa si en la misma hay mas solo la pintamos una vez
                     }
@@ -84,11 +84,11 @@ void Simulator(Simulation* Simu)
                 {
                     if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
                     {
-                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(0, 1, 0, 0));
+                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(0, 1, 0, 0));
                     }
                     else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
                     {
-                        al_draw_filled_rectangle(var2, var, var2+4, var+4, al_map_rgba_f(1, 1, 1, 1));
+                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(1, 1, 1, 1));
                     }
                 }
                 HereIsARobot=0;//Reiniciamos el flag
