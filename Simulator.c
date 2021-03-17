@@ -49,21 +49,13 @@ void Simulator(Simulation* Simu)
     
     al_start_timer(timer);
     
-    /*for(int h= 0; h < H_SCALE; h+=6)
-    {
-        for(int w=0;w < W_SCALE; w+=8)
-        {
-            al_draw_filled_rectangle(w, h, w+7, h+5, al_map_rgba_f(0, 1, 0, 0));
-        }
-    }*/
-    
     while( !(AllClear(Simu->f) ))
     {
         al_wait_for_event(queue, &event);
         
         tickCount+=SimulationUpdate(Simu->robs, Simu->f, Simu->NoRobots);//Vemos la nueva pocicion del robot
         ClearPoint(Simu->f, Simu->robs, Simu->NoRobots);
-        //PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso en la terminal
+        PrintFloor(Simu->f, Simu->robs, Simu->NoRobots);//Dibuajmos el piso en la terminal
         
         bool HereIsARobot=0; //Flag que nos sirve para pintar los robots en un mismo bloque con printf
         for(long i= 0, var=0; i< (Simu->f->Height) ; i++ , var+=floor(H_SCALE/(Simu->f->Height)))//Vamos fila a fila

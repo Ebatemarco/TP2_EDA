@@ -24,11 +24,10 @@ int parseCallback(char *key, char *value, void *userData);
 
 int main(int argc, char** argv) 
 {
-    Data_t userData = {H,W,50,1};
+    Data_t userData = {ERROR,ERROR,ERROR,ERROR};
     
     parseCmdline(argc, argv, &parseCallback, &userData); 
     
-    printf("Modo: %d\nRobots: %d\nH:%d\nW:%d\n",userData.mode, userData.robots, userData.h, userData.w);
     
     if( ( (userData.h <= H) && (userData.w > 0) ) && ( (userData.w <= W) && (userData.w>0) ) )
     {

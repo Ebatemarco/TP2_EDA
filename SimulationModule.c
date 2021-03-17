@@ -60,9 +60,9 @@ int SimulationUpdate(Robot* R, Floor* F, long NoRobots)
 
 void ClearPoint(Floor* F, Robot* R, long NoRobots)
 {
-    for(int i=0;i< NoRobots; i++)
+    for(int i=0;i< NoRobots; i++)//Para cada robot
     {
-        *( (F->Tiles) + sizeof(bool)* ((int)((R+i)->x)) + sizeof(bool)*((int)((R+i)->y)) * (F->Width)) = LIMPIO;
+        *( (F->Tiles) +  ((int)((R+i)->x)) + ((int)((R+i)->y)) * (F->Width)) = LIMPIO;//Me muevo incrementando el punteor del piso tal que x*ancho+y
     }
 }
 
