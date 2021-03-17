@@ -71,27 +71,24 @@ void Simulator(Simulation* Simu)
             
             for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=floor(W_SCALE/W))//Columna a columna
             {
+                
+                
+                if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
+                {
+                    al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(0, 1, 0, 0));
+                }
+                else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
+                {
+                    al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(1, 1, 1, 1));
+                }
+
                 for(int k=0;k< (Simu->NoRobots);k++)//Revisamos si en la casilla hay algun robot de entre los n que tenemos
                 {
                     if( (i == floor(((Simu->robs+k)->y))) && (j == floor(((Simu->robs+k)->x))) )
                     {
-                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(1, 0, 0, 1));
-                        HereIsARobot=1;//Marcamos que en la casilla hay robot
-                        break; //Si un robot esta en la casilla no nos importa si en la misma hay mas solo la pintamos una vez
+                        al_draw_filled_circle(((Simu->robs+k)->x)*(W_SCALE/W)+1,((Simu->robs+k)->y)*(H_SCALE/H)+1, 1, al_map_rgb_f(0, 0, 1));
                     }
                 }
-                if(!HereIsARobot)//Si en la casilla actual no hay un robot Pinto acorde
-                {
-                    if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
-                    {
-                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(0, 1, 0, 0));
-                    }
-                    else if(((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == LIMPIO) //veo si esta limpia 
-                    {
-                        al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/W)-1, var+floor(H_SCALE/H)-1, al_map_rgba_f(1, 1, 1, 1));
-                    }
-                }
-                HereIsARobot=0;//Reiniciamos el flag
                 
 
             }
