@@ -64,7 +64,6 @@ void Simulator(Simulation* Simu)
             for(long j=0, var2 = 0; j< (Simu->f->Width); j++, var2+=floor(W_SCALE/(Simu->f->Width)))//Columna a columna
             {
                 
-                
                 if( ((Simu->f->Tiles)[i*(Simu->f->Width)+j]) == SUCIO) //Veo si esta sucia
                 {
                     al_draw_filled_rectangle(var2, var, var2+floor(W_SCALE/(Simu->f->Width))-1, var+floor(H_SCALE/(Simu->f->Height))-1, al_map_rgba_f(0, 1, 0, 0));
