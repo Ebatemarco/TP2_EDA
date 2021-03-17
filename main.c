@@ -35,21 +35,27 @@ int main(int argc, char** argv)
         if((userData.mode ==1) || (userData.mode==2))
         {
          
-            if (userData.mode == 1) 
+            if(userData.robots > 0)
             {
-                Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
-                Simulator(Simulation1);
-                printf("Cantidad de Ticks: %d", Simulation1->TickCount);
-                DeleteSimulation(Simulation1);
+                if (userData.mode == 1) 
+                {
+                    Simulation* Simulation1 = CreateSimulation(userData.w, userData.h, userData.robots);
+                    Simulator(Simulation1);
+                    printf("Cantidad de Ticks: %d", Simulation1->TickCount);
+                    DeleteSimulation(Simulation1);
 
+                }
+                else if (userData.mode == 2) 
+                {
+
+                    Modo2Funtion(userData.w, userData.h);
+
+                } 
             }
-            else if (userData.mode == 2) 
+            else
             {
-
-                Modo2Funtion(userData.w, userData.h);
-
-            } 
-           
+                printf("ERROR: Invalid number of robots\n");
+            }
         }
         else 
         {
